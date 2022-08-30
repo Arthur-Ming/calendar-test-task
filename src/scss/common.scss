@@ -1,0 +1,41 @@
+@import './variables.scss';
+@import '@fontsource/roboto';
+
+html {
+  font-size: 20px;
+}
+
+body {
+  font-family: 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a,
+button {
+  text-decoration: none;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper-box {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+main {
+  flex: 1 1 100%;
+}
