@@ -1,0 +1,13 @@
+@import '/src/index.scss';
+
+.box {
+  @extend .wrapper-box;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 52px;
+}
+
+.header {
+  background-color: $neutral-100;
+  height: 100px;
+}
