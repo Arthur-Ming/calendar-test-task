@@ -1,0 +1,27 @@
+@import '/src/index.scss';
+
+.box {
+  height: 120px;
+  border-bottom: 1px solid $dark-200;
+  border-left: 1px solid $dark-200;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  &:nth-child(7n + 1) {
+    border-left: none;
+  }
+}
+.header {
+  display: flex;
+  column-gap: 2px;
+  height: 16px;
+  font-size: 14px;
+  line-height: 16px;
+  color: $dark-100;
+}
+
+.has_event {
+  background-color: $blue-100;
+}
