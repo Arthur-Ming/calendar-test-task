@@ -1,5 +1,8 @@
 @import './variables.scss';
 @import '@fontsource/roboto';
+* {
+  box-sizing: border-box;
+}
 
 html {
   font-size: 20px;
@@ -31,9 +34,9 @@ li {
   flex-direction: column;
 }
 .wrapper-box {
-  max-width: 1000px;
+  max-width: 1024px;
   margin: 0 auto;
-  padding: 0px 20px;
+  padding: 0px 12px;
 }
 
 main {

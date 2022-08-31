@@ -1,0 +1,13 @@
+@import '/src/index.scss';
+
+.box {
+  @extend .wrapper-box;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid $dark-200;
+  border-bottom: none;
+  margin-bottom: 100px;
+}

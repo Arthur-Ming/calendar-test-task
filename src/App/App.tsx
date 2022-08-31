@@ -1,3 +1,9 @@
-const App = () => <div className="wrapper">app</div>;
+import Calendar from '../components/Calendar';
+
+const App = () => (
+  <div>
+    <Calendar />
+  </div>
+);
 
 export default App;
