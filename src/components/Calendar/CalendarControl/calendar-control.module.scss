@@ -1,0 +1,43 @@
+@import '/src/index.scss';
+
+.box {
+  @extend .wrapper-box;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+
+.control {
+  width: 220px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0px;
+}
+.button {
+  width: 32px;
+  height: 24px;
+  background-color: $light-100;
+  border: none;
+  outline: 1px solid $dark-100;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  font-size: 18px;
+  line-height: 21px;
+}
+.extra {
+  box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 14px;
+  background-color: $light-100;
+  border: 1px solid $dark-100;
+  color: $dark-200;
+  cursor: pointer;
+}
