@@ -53,6 +53,49 @@ const events = [
     description: '',
     participantsNames: ['Михаил Шустин', 'Владимир Пупкин', 'Дмитрий Медев'],
   },
+
+  {
+    id: uuid(),
+    title: 'Митинг',
+    date: toFormateDate(2020, 1, 30),
+    description: '',
+    participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
+  },
+  {
+    id: uuid(),
+    title: 'Летний лагерь',
+    date: toFormateDate(2020, 2, 12),
+    description: '',
+    participantsNames: ['Алексей Маральный'],
+  },
+  {
+    id: uuid(),
+    title: 'Аква кутеж',
+    date: toFormateDate(2021, 5, 25),
+    description: '',
+    participantsNames: ['Михаил Шустин', 'Владимир Пупкин', 'Дмитрий Медев'],
+  },
+  {
+    id: uuid(),
+    title: 'Шашлыки',
+    date: toFormateDate(2022, 11, 1),
+    description: '',
+    participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
+  },
+  {
+    id: uuid(),
+    title: 'Летний лагерь',
+    date: toFormateDate(2020, 8, 5),
+    description: '',
+    participantsNames: ['Алексей Маральный'],
+  },
+  {
+    id: uuid(),
+    title: 'Аква кутеж',
+    date: toFormateDate(2020, 8, 8),
+    description: '',
+    participantsNames: ['Михаил Шустин', 'Владимир Пупкин', 'Дмитрий Медев'],
+  },
 ];
 
 const api = {

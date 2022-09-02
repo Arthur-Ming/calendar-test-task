@@ -13,6 +13,10 @@ export interface IEvent {
   participantsNames: string[];
 }
 
+export interface IEventWithFormatedDate extends IEvent {
+  formatedDate: string;
+}
+
 export interface IAction {
   type: string;
 }

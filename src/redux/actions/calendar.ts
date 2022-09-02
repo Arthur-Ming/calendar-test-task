@@ -17,7 +17,7 @@ const getNowDate = (): { year: number; month: number; day: number } => {
   };
 };
 
-const setMonth = (year: number, month: number): ISetMonthAction => ({
+export const setMonth = (year: number, month: number): ISetMonthAction => ({
   type: SET_MONTH,
   month,
   year,

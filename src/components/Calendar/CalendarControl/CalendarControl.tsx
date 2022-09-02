@@ -16,6 +16,18 @@ interface DispatchProps {
   getCurrentMonth: () => void;
 }
 
+/*  useEffect(() => {
+    const syncTextbookParamsToStorage = () => {
+      if (selectedSearchValue) localStorage.setItem('date', selectedSearchValue?.date);
+    };
+    syncTextbookParamsToStorage();
+    window.addEventListener('beforeunload', syncTextbookParamsToStorage);
+
+    return () => {
+      window.removeEventListener('beforeunload', syncTextbookParamsToStorage);
+    };
+  }, [selectedSearchValue]); */
+
 type Props = StateProps & DispatchProps;
 
 const CalendarControl = ({ date, getNextMonth, getPrevMonth, getCurrentMonth }: Props) => (
