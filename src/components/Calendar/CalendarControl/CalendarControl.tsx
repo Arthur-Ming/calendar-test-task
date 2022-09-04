@@ -2,12 +2,14 @@ import { ReactComponent as ArrowPrevIcon } from './arrow-prev.svg';
 import { ReactComponent as ArrowNextIcon } from './arrow-next.svg';
 import styles from './calendar-control.module.scss';
 import { connect } from 'react-redux';
-import { calendarDateSelector } from '../../../redux/selectors';
+import { calendarDateSelector, isCurrentDateSelector } from '../../../redux/selectors';
 import { RootState } from '../../../redux/reducer';
 import { getCurrentMonth, getNextMonth, getPrevMonth } from '../../../redux/actions/calendar';
+import classNames from 'classnames';
 
 interface StateProps {
   date: string | null;
+  isCurrentDate: boolean;
 }
 
 interface DispatchProps {
@@ -30,7 +32,13 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps;
 
-const CalendarControl = ({ date, getNextMonth, getPrevMonth, getCurrentMonth }: Props) => (
+const CalendarControl = ({
+  date,
+  getNextMonth,
+  getPrevMonth,
+  getCurrentMonth,
+  isCurrentDate,
+}: Props) => (
   <div className={styles.box}>
     <div className={styles.control}>
       <button className={styles.button} onClick={getPrevMonth}>
@@ -41,7 +49,12 @@ const CalendarControl = ({ date, getNextMonth, getPrevMonth, getCurrentMonth }: 
         <ArrowNextIcon />
       </button>
     </div>
-    <button className={styles.extra} onClick={getCurrentMonth}>
+    <button
+      className={classNames(styles.extra, {
+        [styles.active]: isCurrentDate,
+      })}
+      onClick={getCurrentMonth}
+    >
       Сегодня
     </button>
   </div>
@@ -49,6 +62,7 @@ const CalendarControl = ({ date, getNextMonth, getPrevMonth, getCurrentMonth }: 
 
 const mapStateToProps = (state: RootState) => ({
   date: calendarDateSelector(state),
+  isCurrentDate: isCurrentDateSelector(state),
 });
 
 const mapDispatchToProps = {

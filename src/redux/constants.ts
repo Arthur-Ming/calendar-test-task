@@ -3,7 +3,13 @@ export const SET_MONTH = 'SET_MONTH';
 
 export const LOAD_EVENTS = 'LOAD_EVENTS';
 
+export const ADD_EVENT = 'ADD_EVENT';
+export const EDIT_EVENT = 'EDIT_EVENT';
+
 export const SELECT_EVENT = 'SELECT_EVENT';
+export const UNSELECT_CELL = 'UNSELECT_CELL';
+
+export const SELECT_CELL = 'SELECT_CELL';
 
 export const REQUEST = '_REQUEST';
 export const SUCCESS = '_SUCCESS';

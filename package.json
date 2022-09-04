@@ -16,9 +16,12 @@
     "fuse.js": "^6.6.2",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.2",
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.0.8",
     "sass": "^1.54.5",
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
@@ -48,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.4.2",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",

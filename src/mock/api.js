@@ -10,12 +10,18 @@ const reply = (body, timeout = 1000) => {
   });
 };
 
+const replyErr = (body, timeout = 1000) => {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => reject(body), timeout);
+  });
+};
+
 const events = [
   {
     id: uuid(),
     title: 'Шашлыки',
     date: toFormateDate(2021, 8, 30),
-    description: '',
+    description: 'Шашлыки',
     participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
   },
   {
@@ -36,7 +42,7 @@ const events = [
     id: uuid(),
     title: 'Шашлыки',
     date: toFormateDate(2022, 8, 1),
-    description: '',
+    description: 'Шашлыки',
     participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
   },
   {
@@ -101,6 +107,29 @@ const events = [
 const api = {
   get() {
     return reply(events);
+  },
+  post({ title, date, description = '', participantsNames = [] }) {
+    const newEvent = {
+      id: uuid(),
+      title,
+      date,
+      description,
+      participantsNames,
+    };
+    events.push(newEvent);
+    return reply(newEvent);
+  },
+  put(id, newDescription = '') {
+    const eventIndex = events.findIndex((event) => event.id === id);
+    if (eventIndex === -1) {
+      replyErr('error');
+    }
+    events[eventIndex] = {
+      ...events[eventIndex],
+      description: newDescription,
+    };
+
+    return reply(events[eventIndex]);
   },
 };
 

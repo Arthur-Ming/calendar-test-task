@@ -73,6 +73,7 @@ const SearchBar = ({ selectedSearchValue, selectSearchValue }: Props) => {
           onInput={onInput}
           type="text"
           placeholder="Placeholder"
+          autoFocus
         />
         {searchValue && (
           <span onClick={onResetClick} className={styles.close_box}>

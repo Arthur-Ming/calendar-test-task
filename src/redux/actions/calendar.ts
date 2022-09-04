@@ -1,5 +1,5 @@
-import { GET_DAYS, SET_MONTH } from '../constants';
-import { Dispatch } from '@reduxjs/toolkit';
+import { GET_DAYS, SELECT_CELL, SET_MONTH, UNSELECT_CELL } from '../constants';
+import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import CalendarDays from '../../utils/CalendarDays';
 import { calendarMonthSelector, calendarYearSelector } from '../selectors';
@@ -65,3 +65,12 @@ export const getCurrentMonth = () => (dispatch: Dispatch<ISetMonthAction>) => {
   const { year, month } = getNowDate();
   dispatch(setMonth(year, month));
 };
+
+export const selectCell = (selectedCell: string) => ({
+  type: SELECT_CELL,
+  selectedCell,
+});
+
+export const unSelectCell = () => ({
+  type: UNSELECT_CELL,
+});

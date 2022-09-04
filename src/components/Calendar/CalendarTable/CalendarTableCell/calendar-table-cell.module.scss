@@ -1,16 +1,22 @@
 @import '/src/index.scss';
 
 .box {
-  height: 120px;
   border-bottom: 1px solid $dark-200;
   border-left: 1px solid $dark-200;
-  padding: 8px;
-
+  position: relative;
+  &:nth-child(7n + 1) {
+    border-left: none;
+  }
+}
+.content {
+  height: 120px;
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  &:nth-child(7n + 1) {
-    border-left: none;
+  padding: 8px;
+  color: red;
+  &:hover {
+    background-color: $neutral-100;
   }
 }
 .header {
@@ -24,4 +30,10 @@
 
 .has_event {
   background-color: $blue-100;
+  &:hover {
+    background-color: $blue-200;
+  }
+}
+.active {
+  box-shadow: 0px 0px 10px 2px $blue-300;
 }

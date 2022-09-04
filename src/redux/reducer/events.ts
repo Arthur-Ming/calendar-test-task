@@ -1,5 +1,5 @@
-import { LOAD_EVENTS, SUCCESS, FAILURE, REQUEST } from '../constants';
-import { createReducer } from '@reduxjs/toolkit';
+import { LOAD_EVENTS, SUCCESS, FAILURE, REQUEST, ADD_EVENT, EDIT_EVENT } from '../constants';
+import { AnyAction, createReducer } from '@reduxjs/toolkit';
 import { IEvent, ILoadEventsAction } from '../../interfaces';
 import arrToMapByDate from '../../utils/arrToMapByDate';
 
@@ -10,6 +10,9 @@ export interface IEventsState {
   entities: {
     [key: string]: IEvent;
   };
+
+  userEventLoading: { [key: string]: boolean };
+  userEventError: { [key: string]: unknown };
 }
 
 const initialState: IEventsState = {
@@ -17,6 +20,9 @@ const initialState: IEventsState = {
   loaded: false,
   error: null,
   entities: {},
+
+  userEventLoading: {},
+  userEventError: {},
 };
 
 export default createReducer(initialState, (builder) => {
@@ -39,5 +45,35 @@ export default createReducer(initialState, (builder) => {
       state.loading = false;
       state.loaded = false;
       state.error = error;
+    })
+    .addCase(ADD_EVENT + REQUEST, (state, action) => {
+      const { date } = <AnyAction>action;
+      state.userEventLoading[date] = true;
+      state.userEventError[date] = null;
+    })
+    .addCase(ADD_EVENT + SUCCESS, (state, action) => {
+      const { date, data } = <AnyAction>action;
+      state.userEventLoading[date] = false;
+      state.entities[date] = data;
+    })
+    .addCase(ADD_EVENT + FAILURE, (state, action) => {
+      const { error, date } = <AnyAction>action;
+      state.userEventError[date] = error;
+      state.userEventLoading[date] = false;
+    })
+    .addCase(EDIT_EVENT + REQUEST, (state, action) => {
+      const { date } = <AnyAction>action;
+      state.userEventLoading[date] = true;
+      state.userEventError[date] = null;
+    })
+    .addCase(EDIT_EVENT + SUCCESS, (state, action) => {
+      const { date, data } = <AnyAction>action;
+      state.userEventLoading[date] = false;
+      state.entities[date] = data;
+    })
+    .addCase(EDIT_EVENT + FAILURE, (state, action) => {
+      const { error, date } = <AnyAction>action;
+      state.userEventError[date] = error;
+      state.userEventLoading[date] = false;
     });
 });

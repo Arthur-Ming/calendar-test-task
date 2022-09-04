@@ -8,6 +8,20 @@ import { ISearchState } from './reducer/search';
 export const calendarDaysSelector = (state: RootState) => (<ICalendarState>state.calendar).days;
 export const calendarMonthSelector = (state: RootState) => (<ICalendarState>state.calendar).month;
 export const calendarYearSelector = (state: RootState) => (<ICalendarState>state.calendar).year;
+export const calendarSelectedDaySelector = (state: RootState) =>
+  (<ICalendarState>state.calendar).selectedCell;
+
+export const isCurrentDateSelector = (state: RootState) => {
+  const currentDate = new Date();
+
+  calendarMonthSelector(state);
+  calendarYearSelector(state);
+
+  return (
+    calendarMonthSelector(state) === currentDate.getMonth() &&
+    calendarYearSelector(state) === currentDate.getFullYear()
+  );
+};
 
 export const calendarDateSelector = (state: RootState) => {
   const year = calendarYearSelector(state);
@@ -49,3 +63,9 @@ export const eventsListSelector = createSelector(eventsSelector, (events) =>
 
 export const selectedEventSelector = (state: RootState) =>
   (<ISearchState>state.search).selectedEvent;
+
+export const userEventLoadingSelector = (state: RootState, { date }: { date: string }) =>
+  (<IEventsState>state.events).userEventLoading[date];
+
+export const userEventErrorSelector = (state: RootState, { date }: { date: string }) =>
+  (<IEventsState>state.events).userEventError[date];
