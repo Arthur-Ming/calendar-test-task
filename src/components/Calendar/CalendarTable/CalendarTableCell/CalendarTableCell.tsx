@@ -8,16 +8,18 @@ import { RootState } from '../../../../redux/reducer';
 import {
   calendarSelectedDaySelector,
   eventByDateSelector,
+  isCurrentDateSelector,
   selectedEventSelector,
 } from '../../../../redux/selectors';
 import CalendarEvent from '../CalendarEvent';
-import CalendarTooltip from '../CalendarTooltip';
 import styles from './calendar-table-cell.module.scss';
+import CalendarCellTooltip from '../../CalendarTooltip/CalendarCellTooltip';
 
 interface StateProps {
   event?: IEvent;
   isSelectedDay: boolean;
   isSelectedEvent: boolean;
+  isCurrentDate: boolean;
 }
 
 interface DispatchProps {
@@ -37,6 +39,7 @@ const CalendarTableCell = ({
   onSelect,
   isSelectedDay,
   isSelectedEvent,
+  isCurrentDate,
   date,
 }: Props) => {
   const calendarTableCellRef: RefObject<HTMLDivElement> = useRef(null);
@@ -46,7 +49,7 @@ const CalendarTableCell = ({
       <div
         className={classNames(styles.content, {
           [styles.has_event]: event,
-          [styles.active]: isSelectedEvent || isSelectedDay,
+          [styles.active]: isCurrentDate || isSelectedEvent || isSelectedDay,
         })}
         ref={calendarTableCellRef}
         onClick={onSelect}
@@ -58,7 +61,7 @@ const CalendarTableCell = ({
         {event && <CalendarEvent event={event} />}
       </div>
       {isSelectedDay && (
-        <CalendarTooltip date={date} event={event} calendarTableCellRef={calendarTableCellRef} />
+        <CalendarCellTooltip date={date} calendarTableCellRef={calendarTableCellRef} />
       )}
     </div>
   );
@@ -68,6 +71,7 @@ const mapStateToProps = (state: RootState, props: OwnProps) => ({
   event: eventByDateSelector(state, props),
   isSelectedDay: calendarSelectedDaySelector(state) === props.date,
   isSelectedEvent: selectedEventSelector(state)?.date === props.date,
+  isCurrentDate: isCurrentDateSelector(state, props.date),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>, props: OwnProps) => ({

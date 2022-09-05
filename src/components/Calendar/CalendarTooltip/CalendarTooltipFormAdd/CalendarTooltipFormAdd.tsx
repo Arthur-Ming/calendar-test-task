@@ -5,9 +5,9 @@ import styles from '../calendar-tooltip-forms.module.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import ru from 'date-fns/locale/ru';
 import { connect } from 'react-redux';
-import { addEvent } from '../../../../../redux/actions/events';
-import { IEvent } from '../../../../../interfaces';
-import toFormateDate from '../../../../../utils/toFormateDate';
+import { addEvent } from '../../../../redux/actions/events';
+import { IEvent } from '../../../../interfaces';
+import toFormateDate from '../../../../utils/toFormateDate';
 
 registerLocale('ru', ru);
 
@@ -97,7 +97,7 @@ const CalendarTooltipFormAdd = ({ date, addEvent, userEventLoading }: Props) => 
         <input
           disabled={userEventLoading}
           type="button"
-          value="Удалить"
+          value="Очистить"
           onClick={onDelete}
           className={styles.button}
         />

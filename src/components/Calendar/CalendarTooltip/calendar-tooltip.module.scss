@@ -42,6 +42,20 @@
   }
 }
 
+.box_bottom {
+  left: 0;
+  top: 40px;
+  &::after {
+    left: 7px;
+    top: -7px;
+    filter: drop-shadow(7px 7px 0px 0px rgba(0, 0, 0, 0.25));
+    border-bottom: none;
+    border-left: 1px solid #cfcfcf;
+    border-top: 1px solid #cfcfcf;
+    border-right: none;
+  }
+}
+
 .close {
   position: absolute;
   left: calc(100% - 36px);

@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
-import { IEvent } from '../../../../../interfaces';
-import { editEvent } from '../../../../../redux/actions/events';
+import { IEvent } from '../../../../interfaces';
+import { deleteEvent, editEvent } from '../../../../redux/actions/events';
 import styles from '../calendar-tooltip-forms.module.scss';
 
 type Inputs = {
@@ -10,6 +10,7 @@ type Inputs = {
 
 interface DispatchProps {
   editEvent: (eventId: string, date: string, newDescription: string) => void;
+  deleteEvent: (eventId: string, date: string) => void;
 }
 
 interface OwnProps {
@@ -19,13 +20,16 @@ interface OwnProps {
 
 type Props = OwnProps & DispatchProps;
 
-const CalendarTooltipFormEdit = ({ event, userEventLoading, editEvent }: Props) => {
+const CalendarTooltipFormEdit = ({ event, userEventLoading, editEvent, deleteEvent }: Props) => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     editEvent(event.id, event.date, data?.description);
   };
-  const onDelete = () => reset();
+  const onDelete = () => {
+    deleteEvent(event.id, event.date);
+    reset();
+  };
 
   return (
     <div>
@@ -72,6 +76,7 @@ const CalendarTooltipFormEdit = ({ event, userEventLoading, editEvent }: Props) 
 
 const mapDispatchToProps = {
   editEvent,
+  deleteEvent,
 };
 
 export default connect(null, mapDispatchToProps)(CalendarTooltipFormEdit);

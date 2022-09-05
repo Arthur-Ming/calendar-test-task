@@ -1,11 +1,11 @@
 import styles from './calendar-header.module.scss';
-import CalendarHeaderButtons from './CalendarHeaderButtons';
+import CalendarHeaderControl from './CalendarHeaderControl';
 import SearchBar from './SearchBar';
 
 const CalendarHeader = () => (
   <header className={styles.header}>
     <div className={styles.box}>
-      <CalendarHeaderButtons />
+      <CalendarHeaderControl />
       <SearchBar />
     </div>
   </header>

@@ -45,23 +45,22 @@ const SearchBar = ({ selectedSearchValue, selectSearchValue }: Props) => {
     selectSearchValue(null);
   };
 
-  const onClickOutside = (event: MouseEvent) => {
-    const target = event.target;
-    if (
-      target &&
-      searchBarWrapperRef.current &&
-      !searchBarWrapperRef.current.contains(target as HTMLInputElement)
-    ) {
-      setListOpen(false);
-    }
-  };
-
   useEffect(() => {
+    const onClickOutside = (event: MouseEvent) => {
+      const target = event.target;
+      if (
+        target &&
+        searchBarWrapperRef.current &&
+        !searchBarWrapperRef.current.contains(target as HTMLInputElement)
+      ) {
+        setListOpen(false);
+      }
+    };
     document.addEventListener('click', onClickOutside, true);
     return () => {
       document.removeEventListener('click', onClickOutside, true);
     };
-  });
+  }, []);
 
   return (
     <form className={styles.box} ref={searchBarWrapperRef}>

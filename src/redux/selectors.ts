@@ -6,36 +6,19 @@ import { IEventsState } from './reducer/events';
 import { ISearchState } from './reducer/search';
 
 export const calendarDaysSelector = (state: RootState) => (<ICalendarState>state.calendar).days;
+export const calendarDaySelector = (state: RootState) => (<ICalendarState>state.calendar).day;
 export const calendarMonthSelector = (state: RootState) => (<ICalendarState>state.calendar).month;
 export const calendarYearSelector = (state: RootState) => (<ICalendarState>state.calendar).year;
 export const calendarSelectedDaySelector = (state: RootState) =>
   (<ICalendarState>state.calendar).selectedCell;
 
-export const isCurrentDateSelector = (state: RootState) => {
-  const currentDate = new Date();
-
-  calendarMonthSelector(state);
-  calendarYearSelector(state);
-
+export const isCurrentDateSelector = (state: RootState, date?: string) => {
+  const _date = date ? new Date(date) : new Date();
   return (
-    calendarMonthSelector(state) === currentDate.getMonth() &&
-    calendarYearSelector(state) === currentDate.getFullYear()
+    calendarDaySelector(state) === _date.getDate() &&
+    calendarMonthSelector(state) === _date.getMonth() &&
+    calendarYearSelector(state) === _date.getFullYear()
   );
-};
-
-export const calendarDateSelector = (state: RootState) => {
-  const year = calendarYearSelector(state);
-  const month = calendarMonthSelector(state);
-  if (month !== null && year !== null) {
-    const date = new Date(year, month).toLocaleDateString('ru', {
-      year: 'numeric',
-      month: 'long',
-    });
-    const [currentMonth, currentYear] = date.split(' ');
-    return `${currentMonth[0].toUpperCase()}${currentMonth.slice(1)} ${currentYear}`;
-  }
-
-  return null;
 };
 
 const eventsSelector = (state: RootState) => (<IEventsState>state.events).entities;

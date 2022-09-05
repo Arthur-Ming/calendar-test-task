@@ -1,10 +1,11 @@
-import { GET_DAYS, SELECT_CELL, UNSELECT_CELL, SET_MONTH } from '../constants';
+import { GET_DAYS, SELECT_CELL, UNSELECT_CELL, SET_DATE } from '../constants';
 import { AnyAction, createReducer } from '@reduxjs/toolkit';
-import { ICalendarDay, IGetDaysAction, ISetMonthAction } from '../../interfaces';
+import { ICalendarDay, IGetDaysAction, ISetDateAction } from '../../interfaces';
 
 export interface ICalendarState {
   month: number | null;
   year: number | null;
+  day: number | null;
   days: ICalendarDay[];
   selectedCell: string | null;
 }
@@ -12,6 +13,7 @@ export interface ICalendarState {
 const initialState: ICalendarState = {
   month: null,
   year: null,
+  day: null,
   days: [],
   selectedCell: null,
 };
@@ -22,10 +24,11 @@ export default createReducer(initialState, (builder) => {
       const { days } = <IGetDaysAction>action;
       state.days = days;
     })
-    .addCase(SET_MONTH, (state, action) => {
-      const { month, year } = <ISetMonthAction>action;
+    .addCase(SET_DATE, (state, action) => {
+      const { month, year, day } = <ISetDateAction>action;
       state.month = month;
       state.year = year;
+      state.day = day;
     })
     .addCase(SELECT_CELL, (state, action) => {
       const { selectedCell } = <AnyAction>action;

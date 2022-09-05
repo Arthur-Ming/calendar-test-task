@@ -41,7 +41,7 @@ const events = [
   {
     id: uuid(),
     title: 'Шашлыки',
-    date: toFormateDate(2022, 8, 1),
+    date: toFormateDate(2022, 8, 4),
     description: 'Шашлыки',
     participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
   },
@@ -130,6 +130,18 @@ const api = {
     };
 
     return reply(events[eventIndex]);
+  },
+  delete(id) {
+    const eventIndex = events.findIndex((event) => event.id === id);
+    if (eventIndex === -1) {
+      replyErr('error');
+    }
+    const deletedEvent = {
+      ...events[eventIndex],
+    };
+
+    events.splice(eventIndex, 1);
+    return reply(deletedEvent);
   },
 };
 

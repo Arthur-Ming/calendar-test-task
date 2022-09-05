@@ -25,9 +25,10 @@ export interface IGetDaysAction extends IAction {
   days: ICalendarDay[];
 }
 
-export interface ISetMonthAction extends IAction {
+export interface ISetDateAction extends IAction {
   month: number;
   year: number;
+  day: number | null;
 }
 
 export interface ILoadEventsAction extends IAction {

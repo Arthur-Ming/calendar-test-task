@@ -1,5 +1,4 @@
 import styles from '../search-bar.module.scss';
-import SearchBarListItem from '../SearchBarListItem';
 import { IEvent, IEventWithFormatedDate } from '../../../../../interfaces';
 import { connect } from 'react-redux';
 import { eventsListSelector, selectedEventSelector } from '../../../../../redux/selectors';

@@ -1,4 +1,12 @@
-import { ADD_EVENT, EDIT_EVENT, FAILURE, LOAD_EVENTS, REQUEST, SUCCESS } from '../constants';
+import {
+  ADD_EVENT,
+  DELETE_EVENT,
+  EDIT_EVENT,
+  FAILURE,
+  LOAD_EVENTS,
+  REQUEST,
+  SUCCESS,
+} from '../constants';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { eventsLoadedSelector, eventsLoadingSelector } from '../selectors';
@@ -45,7 +53,18 @@ export const editEvent =
       const data = await api.put(eventId, newDescription);
       dispatch({ type: EDIT_EVENT + SUCCESS, date, data });
     } catch (error: unknown) {
-      console.log(error);
       dispatch({ type: EDIT_EVENT + FAILURE, error, date });
+    }
+  };
+
+export const deleteEvent =
+  (eventId: string, date: string) => async (dispatch: Dispatch<AnyAction>) => {
+    dispatch({ type: DELETE_EVENT + REQUEST, date });
+
+    try {
+      await api.delete(eventId);
+      dispatch({ type: DELETE_EVENT + SUCCESS, date });
+    } catch (error: unknown) {
+      dispatch({ type: DELETE_EVENT + FAILURE, error, date });
     }
   };

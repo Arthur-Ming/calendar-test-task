@@ -1,4 +1,12 @@
-import { LOAD_EVENTS, SUCCESS, FAILURE, REQUEST, ADD_EVENT, EDIT_EVENT } from '../constants';
+import {
+  LOAD_EVENTS,
+  SUCCESS,
+  FAILURE,
+  REQUEST,
+  ADD_EVENT,
+  EDIT_EVENT,
+  DELETE_EVENT,
+} from '../constants';
 import { AnyAction, createReducer } from '@reduxjs/toolkit';
 import { IEvent, ILoadEventsAction } from '../../interfaces';
 import arrToMapByDate from '../../utils/arrToMapByDate';
@@ -72,6 +80,21 @@ export default createReducer(initialState, (builder) => {
       state.entities[date] = data;
     })
     .addCase(EDIT_EVENT + FAILURE, (state, action) => {
+      const { error, date } = <AnyAction>action;
+      state.userEventError[date] = error;
+      state.userEventLoading[date] = false;
+    })
+    .addCase(DELETE_EVENT + REQUEST, (state, action) => {
+      const { date } = <AnyAction>action;
+      state.userEventLoading[date] = true;
+      state.userEventError[date] = null;
+    })
+    .addCase(DELETE_EVENT + SUCCESS, (state, action) => {
+      const { date } = <AnyAction>action;
+      state.userEventLoading[date] = false;
+      delete state.entities[date];
+    })
+    .addCase(DELETE_EVENT + FAILURE, (state, action) => {
       const { error, date } = <AnyAction>action;
       state.userEventError[date] = error;
       state.userEventLoading[date] = false;
