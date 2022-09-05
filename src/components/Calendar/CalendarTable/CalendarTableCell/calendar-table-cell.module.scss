@@ -14,7 +14,40 @@
   flex-direction: column;
   row-gap: 8px;
   padding: 8px;
-  color: red;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 12px;
+    background-color: $light-100;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $neutral-200;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark-200;
+    border: 1px $neutral-200 solid;
+    border-radius: 9em;
+    box-shadow: inset 1px 1px 10px #f3faf7;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $blue-300;
+  }
+
+  &::-webkit-scrollbar-button:horizontal:start:decrement {
+    background: linear-gradient(30deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(150deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(270deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: #f6f8f4;
+  }
+
+  &::-webkit-scrollbar-button:horizontal:end:increment {
+    background: linear-gradient(210deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(330deg, #02141a 40%, rgba(0, 0, 0, 0) 41%),
+      linear-gradient(90deg, #02141a 30%, rgba(0, 0, 0, 0) 31%);
+    background-color: #f6f8f4;
+  }
   &:hover {
     background-color: $neutral-100;
   }

@@ -43,7 +43,13 @@ const events = [
     title: 'Шашлыки',
     date: toFormateDate(2022, 8, 4),
     description: 'Шашлыки',
-    participantsNames: ['Филипп Коров', 'Дмитрий Табасков'],
+    participantsNames: [
+      'Филипп Коров',
+      'Дмитрий Табасков',
+      'Михаил Шустин',
+      'Владимир Пупкин',
+      'Дмитрий Медев',
+    ],
   },
   {
     id: uuid(),

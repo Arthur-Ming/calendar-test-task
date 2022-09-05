@@ -36,18 +36,16 @@ const CalendarControl = ({
   getCurrentMonth,
   isCurrentDate,
 }: Props) => {
-  /* useEffect(() => {
+  useEffect(() => {
     const syncCalendarParamsToStorage = () => {
       localStorage.setItem('year', String(year));
       localStorage.setItem('month', String(month));
     };
-
     window.addEventListener('beforeunload', syncCalendarParamsToStorage);
-
     return () => {
       window.removeEventListener('beforeunload', syncCalendarParamsToStorage);
     };
-  }, [month, year]); */
+  }, [month, year]);
 
   return (
     <div className={styles.box}>

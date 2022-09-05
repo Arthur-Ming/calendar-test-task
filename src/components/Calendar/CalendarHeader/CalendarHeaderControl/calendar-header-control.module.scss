@@ -16,22 +16,22 @@
   border-radius: 4px;
   font-size: 12px;
   line-height: 14px;
-  color: #ffffff;
+  color: $light-100;
   text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   border: none;
   transition: all 0.2s ease 0s;
   cursor: pointer;
   &:hover {
-    background: #27a1ff;
+    background: $blue-200;
   }
   &:disabled {
-    background: #cfcfcf;
-    color: #ffffff;
+    background: $neutral-200;
+    color: $light-100;
   }
 }
 .active {
-  background: #c2e4fe;
+  background: $blue-100;
   &:hover {
-    background: #c2e4fe;
+    background: $blue-100;
   }
 }

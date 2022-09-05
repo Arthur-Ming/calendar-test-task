@@ -32,7 +32,15 @@ export const getDays =
   (year: number | null, month: number | null) =>
   (dispatch: Dispatch<ISelectCellAction | IGetDaysAction | ISetDateAction>) => {
     if (year === null || month === null) {
+      const savedYear = localStorage.getItem('year');
+      const savedMonth = localStorage.getItem('month');
+      if (savedYear && savedMonth) {
+        dispatch(setDate(Number(savedYear), Number(savedMonth)));
+        return;
+      }
+
       const { year, month, day, dateISO } = getNowDate();
+
       dispatch(setDate(year, month, day));
       dispatch(selectCell(dateISO));
       return;
