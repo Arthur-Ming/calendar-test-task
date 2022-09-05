@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/calendar-test-task/static/css/main.ccd74680.css",
-    "main.js": "/calendar-test-task/static/js/main.ee4808be.js",
+    "main.css": "/calendar-test-task/static/css/main.26380dc3.css",
+    "main.js": "/calendar-test-task/static/js/main.a1914396.js",
     "static/media/roboto-all-400-normal.woff": "/calendar-test-task/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff",
     "static/media/roboto-latin-400-normal.woff2": "/calendar-test-task/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
     "static/media/roboto-cyrillic-ext-400-normal.woff2": "/calendar-test-task/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2",
@@ -15,11 +15,11 @@
     "index.html": "/calendar-test-task/index.html",
     "static/media/arrow-prev.svg": "/calendar-test-task/static/media/arrow-prev.a6e4f7a451b029e87b6ed3495d1443c7.svg",
     "static/media/arrow-next.svg": "/calendar-test-task/static/media/arrow-next.ce2c2ef816669d046351ceceed3de309.svg",
-    "main.ccd74680.css.map": "/calendar-test-task/static/css/main.ccd74680.css.map",
-    "main.ee4808be.js.map": "/calendar-test-task/static/js/main.ee4808be.js.map"
+    "main.26380dc3.css.map": "/calendar-test-task/static/css/main.26380dc3.css.map",
+    "main.a1914396.js.map": "/calendar-test-task/static/js/main.a1914396.js.map"
   },
   "entrypoints": [
-    "static/css/main.ccd74680.css",
-    "static/js/main.ee4808be.js"
+    "static/css/main.26380dc3.css",
+    "static/js/main.a1914396.js"
   ]
 }
