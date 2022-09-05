@@ -7,8 +7,8 @@ import {
   EDIT_EVENT,
   DELETE_EVENT,
 } from '../constants';
-import { AnyAction, createReducer } from '@reduxjs/toolkit';
-import { IEvent, ILoadEventsAction } from '../../interfaces';
+import { createReducer } from '@reduxjs/toolkit';
+import { IAddEventAction, IEvent, ILoadEventsAction } from '../../interfaces';
 import arrToMapByDate from '../../utils/arrToMapByDate';
 
 export interface IEventsState {
@@ -55,47 +55,47 @@ export default createReducer(initialState, (builder) => {
       state.error = error;
     })
     .addCase(ADD_EVENT + REQUEST, (state, action) => {
-      const { date } = <AnyAction>action;
+      const { date } = <IAddEventAction>action;
       state.userEventLoading[date] = true;
       state.userEventError[date] = null;
     })
     .addCase(ADD_EVENT + SUCCESS, (state, action) => {
-      const { date, data } = <AnyAction>action;
+      const { date, data } = <IAddEventAction>action;
       state.userEventLoading[date] = false;
-      state.entities[date] = data;
+      data && (state.entities[date] = data);
     })
     .addCase(ADD_EVENT + FAILURE, (state, action) => {
-      const { error, date } = <AnyAction>action;
+      const { error, date } = <IAddEventAction>action;
       state.userEventError[date] = error;
       state.userEventLoading[date] = false;
     })
     .addCase(EDIT_EVENT + REQUEST, (state, action) => {
-      const { date } = <AnyAction>action;
+      const { date } = <IAddEventAction>action;
       state.userEventLoading[date] = true;
       state.userEventError[date] = null;
     })
     .addCase(EDIT_EVENT + SUCCESS, (state, action) => {
-      const { date, data } = <AnyAction>action;
+      const { date, data } = <IAddEventAction>action;
       state.userEventLoading[date] = false;
-      state.entities[date] = data;
+      data && (state.entities[date] = data);
     })
     .addCase(EDIT_EVENT + FAILURE, (state, action) => {
-      const { error, date } = <AnyAction>action;
+      const { error, date } = <IAddEventAction>action;
       state.userEventError[date] = error;
       state.userEventLoading[date] = false;
     })
     .addCase(DELETE_EVENT + REQUEST, (state, action) => {
-      const { date } = <AnyAction>action;
+      const { date } = <IAddEventAction>action;
       state.userEventLoading[date] = true;
       state.userEventError[date] = null;
     })
     .addCase(DELETE_EVENT + SUCCESS, (state, action) => {
-      const { date } = <AnyAction>action;
+      const { date } = <IAddEventAction>action;
       state.userEventLoading[date] = false;
       delete state.entities[date];
     })
     .addCase(DELETE_EVENT + FAILURE, (state, action) => {
-      const { error, date } = <AnyAction>action;
+      const { error, date } = <IAddEventAction>action;
       state.userEventError[date] = error;
       state.userEventLoading[date] = false;
     });

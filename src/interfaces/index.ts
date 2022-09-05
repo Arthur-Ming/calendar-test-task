@@ -31,7 +31,25 @@ export interface ISetDateAction extends IAction {
   day: number | null;
 }
 
+export interface ISelectCellAction extends IAction {
+  selectedCell: string;
+}
+
 export interface ILoadEventsAction extends IAction {
   data?: IEvent[];
   error?: unknown;
+}
+
+export interface IAddEventAction extends IAction {
+  date: string;
+  data?: IEvent;
+  error?: null | unknown;
+}
+
+export interface ISelectSearchValue extends IAction {
+  selectedEvent: IEvent | null;
+}
+
+export interface ISetTooltipPathAction extends IAction {
+  path: string | null;
 }

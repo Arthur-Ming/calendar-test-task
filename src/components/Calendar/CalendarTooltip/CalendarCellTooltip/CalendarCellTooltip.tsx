@@ -1,7 +1,9 @@
 import classNames from 'classnames';
-import { RefObject } from 'react';
+import { Dispatch, RefObject } from 'react';
 import { connect } from 'react-redux';
+import { IAction, ISetTooltipPathAction } from '../../../../interfaces';
 import { unSelectCell } from '../../../../redux/actions/calendar';
+import { setTooltipPath } from '../../../../redux/actions/tooltip';
 import styles from '../calendar-tooltip.module.scss';
 import CalendarTooltip from '../CalendarTooltip';
 
@@ -38,8 +40,11 @@ const CalendarCellTooltip = ({ calendarTableCellRef, date, onClose }: Props) => 
   );
 };
 
-const mapDispatchToProps = {
-  onClose: unSelectCell,
-};
+const mapDispatchToProps = (dispatch: Dispatch<IAction | ISetTooltipPathAction>) => ({
+  onClose: () => {
+    dispatch(setTooltipPath(null));
+    dispatch(unSelectCell());
+  },
+});
 
 export default connect(null, mapDispatchToProps)(CalendarCellTooltip);

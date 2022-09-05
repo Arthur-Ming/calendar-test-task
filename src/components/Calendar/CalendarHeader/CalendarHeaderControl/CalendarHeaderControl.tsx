@@ -1,94 +1,90 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { IEvent } from '../../../../interfaces';
+import { IAction, IEvent, ISetTooltipPathAction } from '../../../../interfaces';
 import { unSelectCell } from '../../../../redux/actions/calendar';
 import { RootState } from '../../../../redux/reducer';
 import { selectedEventSelector } from '../../../../redux/selectors/search';
-import { calendarSelectedDaySelector } from '../../../../redux/selectors/calendar';
 import toFormateDate from '../../../../utils/toFormateDate';
 import CalendarHeaderControlTooltip from '../../CalendarTooltip/CalendarHeaderControlTooltip';
 import styles from './calendar-header-control.module.scss';
+import { tooltipPathSelector } from '../../../../redux/selectors/tooltip';
+import { setTooltipPath } from '../../../../redux/actions/tooltip';
+import { ADD_FROM_CONTROL, EDIT_FROM_CONTROL, TOOLTIP_PATH } from '../../../../redux/constants';
 
 interface DispatchProps {
-  unSelectCell: () => void;
+  onClickAdd: () => void;
+  onClickEdit: () => void;
+  onCloseTooltip: () => void;
 }
 
 interface StateProps {
+  isAddTooltip: boolean;
+  isEditTooltip: boolean;
   selectedEvent: IEvent | null;
-  selectedCell: string | null;
 }
 
 type Props = StateProps & DispatchProps;
 
-const CalendarHeaderControl = ({ selectedEvent, selectedCell, unSelectCell }: Props) => {
-  const [isOpenAddTooltip, setOpenAddTooltip] = useState(false);
-  const [isOpenEditTooltip, setOpenEditTooltip] = useState(false);
+const CalendarHeaderControl = ({
+  isAddTooltip,
+  isEditTooltip,
+  onClickAdd,
+  onClickEdit,
+  onCloseTooltip,
+  selectedEvent,
+}: Props) => {
   const date = toFormateDate(new Date());
-
-  const onCloseAddTooltip = () => {
-    setOpenAddTooltip(false);
-  };
-  const onCloseEditTooltip = () => {
-    setOpenEditTooltip(false);
-  };
-
-  if (selectedCell) {
-    isOpenAddTooltip && onCloseAddTooltip();
-    isOpenEditTooltip && onCloseEditTooltip();
-  }
-
-  const onClickAdd = () => {
-    setOpenAddTooltip(true);
-    setOpenEditTooltip(false);
-    unSelectCell();
-  };
-  const onClickEdit = () => {
-    setOpenEditTooltip(true);
-    setOpenAddTooltip(false);
-    unSelectCell();
-  };
-
   return (
     <div className={styles.buttons}>
       <div className={styles.button_wrapper}>
         <button
           className={classNames(styles.button, {
-            [styles.active]: isOpenAddTooltip && !selectedCell,
+            [styles.active]: isAddTooltip,
           })}
           onClick={onClickAdd}
+          disabled={Boolean(selectedEvent)}
         >
           Добавить
         </button>
-        {isOpenAddTooltip && !selectedCell && (
-          <CalendarHeaderControlTooltip date={date} onClose={onCloseAddTooltip} />
-        )}
+        {isAddTooltip && <CalendarHeaderControlTooltip date={date} onClose={onCloseTooltip} />}
       </div>
       <div className={styles.button_wrapper}>
         <button
           className={classNames(styles.button, {
-            [styles.active]: isOpenEditTooltip && !selectedCell,
+            [styles.active]: isEditTooltip,
           })}
           onClick={onClickEdit}
           disabled={!Boolean(selectedEvent)}
         >
           Обновить
         </button>
-        {isOpenEditTooltip && selectedEvent && !selectedCell && (
-          <CalendarHeaderControlTooltip date={selectedEvent.date} onClose={onCloseEditTooltip} />
+        {isEditTooltip && selectedEvent && (
+          <CalendarHeaderControlTooltip date={selectedEvent.date} onClose={onCloseTooltip} />
         )}
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = {
-  unSelectCell,
-};
+const mapDispatchToProps = (dispatch: Dispatch<ISetTooltipPathAction | IAction>) => ({
+  onClickAdd: () => {
+    dispatch(setTooltipPath(TOOLTIP_PATH + ADD_FROM_CONTROL));
+    dispatch(unSelectCell());
+  },
+  onClickEdit: () => {
+    dispatch(setTooltipPath(TOOLTIP_PATH + EDIT_FROM_CONTROL));
+    dispatch(unSelectCell());
+  },
+  onCloseTooltip: () => {
+    dispatch(setTooltipPath(null));
+  },
+});
 
 const mapStateToProps = (state: RootState) => ({
+  isAddTooltip: tooltipPathSelector(state) === TOOLTIP_PATH + ADD_FROM_CONTROL,
+  isEditTooltip: tooltipPathSelector(state) === TOOLTIP_PATH + EDIT_FROM_CONTROL,
   selectedEvent: selectedEventSelector(state),
-  selectedCell: calendarSelectedDaySelector(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeaderControl);

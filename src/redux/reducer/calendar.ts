@@ -1,6 +1,6 @@
 import { GET_DAYS, SELECT_CELL, UNSELECT_CELL, SET_DATE } from '../constants';
-import { AnyAction, createReducer } from '@reduxjs/toolkit';
-import { ICalendarDay, IGetDaysAction, ISetDateAction } from '../../interfaces';
+import { createReducer } from '@reduxjs/toolkit';
+import { ICalendarDay, IGetDaysAction, ISelectCellAction, ISetDateAction } from '../../interfaces';
 
 export interface ICalendarState {
   month: number | null;
@@ -31,7 +31,7 @@ export default createReducer(initialState, (builder) => {
       state.day = day;
     })
     .addCase(SELECT_CELL, (state, action) => {
-      const { selectedCell } = <AnyAction>action;
+      const { selectedCell } = <ISelectCellAction>action;
       state.selectedCell = selectedCell;
     })
     .addCase(UNSELECT_CELL, (state) => {

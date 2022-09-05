@@ -2,26 +2,17 @@ import { ReactComponent as ArrowPrevIcon } from './arrow-prev.svg';
 import { ReactComponent as ArrowNextIcon } from './arrow-next.svg';
 import styles from './calendar-control.module.scss';
 import { connect } from 'react-redux';
-
 import { RootState } from '../../../redux/reducer';
 import { getCurrentMonth, getNextMonth, getPrevMonth } from '../../../redux/actions/calendar';
 import classNames from 'classnames';
 import { useEffect } from 'react';
 import {
   calendarMonthSelector,
+  calendarSelectedDaySelector,
   calendarYearSelector,
-  isCurrentDateSelector,
 } from '../../../redux/selectors/calendar';
-
-const toFormatDateForControl = (year: number | null, month: number | null) => {
-  if (year === null || month === null) return null;
-  const date = new Date(year, month).toLocaleDateString('ru', {
-    year: 'numeric',
-    month: 'long',
-  });
-  const [currentMonth, currentYear] = date.split(' ');
-  return `${currentMonth[0].toUpperCase()}${currentMonth.slice(1)} ${currentYear}`;
-};
+import toFormateDate from '../../../utils/toFormateDate';
+import toFormatDateForControl from './toFormatDateForControl';
 
 interface StateProps {
   month: number | null;
@@ -45,7 +36,7 @@ const CalendarControl = ({
   getCurrentMonth,
   isCurrentDate,
 }: Props) => {
-  useEffect(() => {
+  /* useEffect(() => {
     const syncCalendarParamsToStorage = () => {
       localStorage.setItem('year', String(year));
       localStorage.setItem('month', String(month));
@@ -56,7 +47,7 @@ const CalendarControl = ({
     return () => {
       window.removeEventListener('beforeunload', syncCalendarParamsToStorage);
     };
-  }, [month, year]);
+  }, [month, year]); */
 
   return (
     <div className={styles.box}>
@@ -84,7 +75,7 @@ const CalendarControl = ({
 const mapStateToProps = (state: RootState) => ({
   month: calendarMonthSelector(state),
   year: calendarYearSelector(state),
-  isCurrentDate: isCurrentDateSelector(state),
+  isCurrentDate: calendarSelectedDaySelector(state) === toFormateDate(new Date()),
 });
 
 const mapDispatchToProps = {

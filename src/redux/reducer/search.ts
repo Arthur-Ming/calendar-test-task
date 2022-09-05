@@ -1,6 +1,6 @@
 import { SELECT_EVENT } from '../constants';
-import { AnyAction, createReducer } from '@reduxjs/toolkit';
-import { IEvent } from '../../interfaces';
+import { createReducer } from '@reduxjs/toolkit';
+import { IEvent, ISelectSearchValue } from '../../interfaces';
 
 export interface ISearchState {
   selectedEvent: IEvent | null;
@@ -12,7 +12,7 @@ const initialState: ISearchState = {
 
 export default createReducer(initialState, (builder) => {
   builder.addCase(SELECT_EVENT, (state, action) => {
-    const { selectedEvent } = <AnyAction>action;
+    const { selectedEvent } = <ISelectSearchValue>action;
     state.selectedEvent = selectedEvent;
   });
 });

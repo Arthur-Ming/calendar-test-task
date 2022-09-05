@@ -5,13 +5,15 @@ import {
   FAILURE,
   LOAD_EVENTS,
   REQUEST,
+  SELECT_EVENT,
   SUCCESS,
 } from '../constants';
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { eventsLoadedSelector, eventsLoadingSelector } from '../selectors/events';
 import api from '../../mock/api';
-import { IEvent, ILoadEventsAction } from '../../interfaces';
+import { IAddEventAction, IEvent, ILoadEventsAction, ISelectSearchValue } from '../../interfaces';
+import { selectedEventSelector } from '../selectors/search';
 
 export const loadEvents =
   () => async (dispatch: Dispatch<ILoadEventsAction>, getState: () => RootState) => {
@@ -33,7 +35,7 @@ export const loadEvents =
 
 export const addEvent =
   ({ title, date, description, participantsNames }: Omit<IEvent, 'id'>) =>
-  async (dispatch: Dispatch<AnyAction>) => {
+  async (dispatch: Dispatch<IAddEventAction>) => {
     dispatch({ type: ADD_EVENT + REQUEST, date });
 
     try {
@@ -46,7 +48,7 @@ export const addEvent =
 
 export const editEvent =
   (eventId: string, date: string, newDescription: string) =>
-  async (dispatch: Dispatch<AnyAction>) => {
+  async (dispatch: Dispatch<IAddEventAction>) => {
     dispatch({ type: EDIT_EVENT + REQUEST, date });
 
     try {
@@ -58,12 +60,16 @@ export const editEvent =
   };
 
 export const deleteEvent =
-  (eventId: string, date: string) => async (dispatch: Dispatch<AnyAction>) => {
+  (eventId: string, date: string) =>
+  async (dispatch: Dispatch<IAddEventAction | ISelectSearchValue>, getState: () => RootState) => {
     dispatch({ type: DELETE_EVENT + REQUEST, date });
+    const state = getState();
 
     try {
       await api.delete(eventId);
       dispatch({ type: DELETE_EVENT + SUCCESS, date });
+      date === selectedEventSelector(state)?.date &&
+        dispatch({ type: SELECT_EVENT, selectedEvent: null });
     } catch (error: unknown) {
       dispatch({ type: DELETE_EVENT + FAILURE, error, date });
     }

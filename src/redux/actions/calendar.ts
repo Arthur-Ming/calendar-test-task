@@ -1,19 +1,19 @@
 import { GET_DAYS, SELECT_CELL, SET_DATE, UNSELECT_CELL } from '../constants';
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
+import { Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import CalendarDays from '../../utils/CalendarDays';
 import { calendarMonthSelector, calendarYearSelector } from '../selectors/calendar';
-import { IGetDaysAction, ISetDateAction } from '../../interfaces';
+import { IAction, IGetDaysAction, ISelectCellAction, ISetDateAction } from '../../interfaces';
+import toFormateDate from '../../utils/toFormateDate';
 
-const getNowDate = (): { year: number; month: number; day: number } => {
+const getNowDate = (): { year: number; month: number; day: number; dateISO: string } => {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
+
   return {
-    year,
-    month,
-    day,
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    day: date.getDate(),
+    dateISO: toFormateDate(date),
   };
 };
 
@@ -30,10 +30,11 @@ export const setDate = (
 
 export const getDays =
   (year: number | null, month: number | null) =>
-  (dispatch: Dispatch<IGetDaysAction | ISetDateAction>) => {
+  (dispatch: Dispatch<ISelectCellAction | IGetDaysAction | ISetDateAction>) => {
     if (year === null || month === null) {
-      const { year, month, day } = getNowDate();
+      const { year, month, day, dateISO } = getNowDate();
       dispatch(setDate(year, month, day));
+      dispatch(selectCell(dateISO));
       return;
     }
     const days = new CalendarDays(year, month).creat();
@@ -41,7 +42,7 @@ export const getDays =
   };
 
 export const getNextMonth =
-  () => (dispatch: Dispatch<ISetDateAction>, getState: () => RootState) => {
+  () => (dispatch: Dispatch<ISetDateAction | IAction>, getState: () => RootState) => {
     const state = getState();
 
     const currentMonth = calendarMonthSelector(state);
@@ -50,11 +51,12 @@ export const getNextMonth =
     if (currentMonth !== null && currentYear !== null) {
       const date = new Date(currentYear, currentMonth + 1);
       dispatch(setDate(date.getFullYear(), date.getMonth()));
+      dispatch(unSelectCell());
     }
   };
 
 export const getPrevMonth =
-  () => (dispatch: Dispatch<ISetDateAction>, getState: () => RootState) => {
+  () => (dispatch: Dispatch<ISetDateAction | IAction>, getState: () => RootState) => {
     const state = getState();
 
     const currentMonth = calendarMonthSelector(state);
@@ -63,15 +65,17 @@ export const getPrevMonth =
     if (currentMonth !== null && currentYear !== null) {
       const date = new Date(currentYear, currentMonth - 1);
       dispatch(setDate(date.getFullYear(), date.getMonth()));
+      dispatch(unSelectCell());
     }
   };
 
-export const getCurrentMonth = () => (dispatch: Dispatch<ISetDateAction>) => {
-  const { year, month, day } = getNowDate();
+export const getCurrentMonth = () => (dispatch: Dispatch<ISetDateAction | IAction>) => {
+  const { year, month, day, dateISO } = getNowDate();
   dispatch(setDate(year, month, day));
+  dispatch(selectCell(dateISO));
 };
 
-export const selectCell = (selectedCell: string) => ({
+export const selectCell = (selectedCell: string): ISelectCellAction => ({
   type: SELECT_CELL,
   selectedCell,
 });

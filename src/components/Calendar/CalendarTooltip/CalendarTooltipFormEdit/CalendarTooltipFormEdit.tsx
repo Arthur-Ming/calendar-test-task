@@ -28,6 +28,7 @@ const CalendarTooltipFormEdit = ({ event, userEventLoading, editEvent, deleteEve
   };
   const onDelete = () => {
     deleteEvent(event.id, event.date);
+
     reset();
   };
 
