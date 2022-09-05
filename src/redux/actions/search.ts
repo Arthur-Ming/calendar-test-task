@@ -1,7 +1,7 @@
 import { SELECT_EVENT } from '../constants';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { eventByDateSelector } from '../selectors';
+import { eventByDateSelector } from '../selectors/events';
 import { setDate } from './calendar';
 
 export const selectSearchValue =

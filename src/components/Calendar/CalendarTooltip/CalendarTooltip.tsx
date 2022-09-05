@@ -6,7 +6,7 @@ import {
   eventByDateSelector,
   userEventErrorSelector,
   userEventLoadingSelector,
-} from '../../../redux/selectors';
+} from '../../../redux/selectors/events';
 import styles from './calendar-tooltip.module.scss';
 import CalendarTooltipFormsAdd from './CalendarTooltipFormAdd';
 import CalendarTooltipFormEdit from './CalendarTooltipFormEdit';

@@ -9,7 +9,7 @@ import {
 } from '../constants';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { eventsLoadedSelector, eventsLoadingSelector } from '../selectors';
+import { eventsLoadedSelector, eventsLoadingSelector } from '../selectors/events';
 import api from '../../mock/api';
 import { IEvent, ILoadEventsAction } from '../../interfaces';
 

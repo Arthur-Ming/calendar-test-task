@@ -4,7 +4,7 @@ import styles from './search-bar.module.scss';
 import SearchBarList from './SearchBarList';
 import { ChangeEvent, RefObject, useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { selectedEventSelector } from '../../../../redux/selectors';
+import { selectedEventSelector } from '../../../../redux/selectors/search';
 import { RootState } from '../../../../redux/reducer';
 import { IEvent } from '../../../../interfaces';
 import { selectSearchValue } from '../../../../redux/actions/search';

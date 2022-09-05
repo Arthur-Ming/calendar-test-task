@@ -7,7 +7,7 @@ import {
   calendarDaysSelector,
   calendarMonthSelector,
   calendarYearSelector,
-} from '../../../redux/selectors';
+} from '../../../redux/selectors/calendar';
 import styles from '../calendar.module.scss';
 import CalendarTableCell from './CalendarTableCell';
 

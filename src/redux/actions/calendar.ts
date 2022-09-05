@@ -2,7 +2,7 @@ import { GET_DAYS, SELECT_CELL, SET_DATE, UNSELECT_CELL } from '../constants';
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import CalendarDays from '../../utils/CalendarDays';
-import { calendarMonthSelector, calendarYearSelector } from '../selectors';
+import { calendarMonthSelector, calendarYearSelector } from '../selectors/calendar';
 import { IGetDaysAction, ISetDateAction } from '../../interfaces';
 
 const getNowDate = (): { year: number; month: number; day: number } => {

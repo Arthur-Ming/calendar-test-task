@@ -1,11 +1,12 @@
 import styles from '../search-bar.module.scss';
 import { IEvent, IEventWithFormatedDate } from '../../../../../interfaces';
 import { connect } from 'react-redux';
-import { eventsListSelector, selectedEventSelector } from '../../../../../redux/selectors';
+import { eventsListSelector } from '../../../../../redux/selectors/events';
 import { RootState } from '../../../../../redux/reducer';
 import filterEventsList from '../filterEventsList';
 import { selectSearchValue } from '../../../../../redux/actions/search';
 import classNames from 'classnames';
+import { selectedEventSelector } from '../../../../../redux/selectors/search';
 
 interface OwnProps {
   searchValue: string;

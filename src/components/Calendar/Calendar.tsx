@@ -5,7 +5,7 @@ import Loader from '../Loader';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { loadEvents } from '../../redux/actions/events';
-import { eventsLoadingSelector } from '../../redux/selectors';
+import { eventsLoadingSelector } from '../../redux/selectors/events';
 import { RootState } from '../../redux/reducer';
 
 interface StateProps {

@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 import { ICalendarDay, IEvent } from '../../../../interfaces';
 import { selectCell } from '../../../../redux/actions/calendar';
 import { RootState } from '../../../../redux/reducer';
-import {
-  calendarSelectedDaySelector,
-  eventByDateSelector,
-  isCurrentDateSelector,
-  selectedEventSelector,
-} from '../../../../redux/selectors';
+import { eventByDateSelector } from '../../../../redux/selectors/events';
 import CalendarEvent from '../CalendarEvent';
 import styles from './calendar-table-cell.module.scss';
 import CalendarCellTooltip from '../../CalendarTooltip/CalendarCellTooltip';
+import {
+  calendarSelectedDaySelector,
+  isCurrentDateSelector,
+} from '../../../../redux/selectors/calendar';
+import { selectedEventSelector } from '../../../../redux/selectors/search';
 
 interface StateProps {
   event?: IEvent;

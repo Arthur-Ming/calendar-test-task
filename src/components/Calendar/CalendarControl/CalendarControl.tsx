@@ -2,15 +2,16 @@ import { ReactComponent as ArrowPrevIcon } from './arrow-prev.svg';
 import { ReactComponent as ArrowNextIcon } from './arrow-next.svg';
 import styles from './calendar-control.module.scss';
 import { connect } from 'react-redux';
-import {
-  calendarMonthSelector,
-  calendarYearSelector,
-  isCurrentDateSelector,
-} from '../../../redux/selectors';
+
 import { RootState } from '../../../redux/reducer';
 import { getCurrentMonth, getNextMonth, getPrevMonth } from '../../../redux/actions/calendar';
 import classNames from 'classnames';
 import { useEffect } from 'react';
+import {
+  calendarMonthSelector,
+  calendarYearSelector,
+  isCurrentDateSelector,
+} from '../../../redux/selectors/calendar';
 
 const toFormatDateForControl = (year: number | null, month: number | null) => {
   if (year === null || month === null) return null;
