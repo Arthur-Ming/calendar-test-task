@@ -7,6 +7,11 @@
 .icon {
   width: 20px;
   height: 20px;
+  color: $dark-100;
+  transition: color 0.2s ease 0s;
+  &:hover {
+    color: $dark-200;
+  }
 }
 
 .label {
@@ -50,7 +55,7 @@
   z-index: 10;
   &:hover {
     .close {
-      color: $blue-200;
+      color: $dark-200;
     }
   }
 }
@@ -58,7 +63,7 @@
 .close {
   width: 6px;
   height: 6px;
-  color: $dark-200;
+  color: $dark-100;
   transition: color 0.2s ease 0s;
 }
 
