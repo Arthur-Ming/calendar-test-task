@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/calendar-test-task/static/css/main.ccd74680.css",
+    "main.js": "/calendar-test-task/static/js/main.ee4808be.js",
+    "static/media/roboto-all-400-normal.woff": "/calendar-test-task/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff",
+    "static/media/roboto-latin-400-normal.woff2": "/calendar-test-task/static/media/roboto-latin-400-normal.b009a76ad6afe4ebd301.woff2",
+    "static/media/roboto-cyrillic-ext-400-normal.woff2": "/calendar-test-task/static/media/roboto-cyrillic-ext-400-normal.804378952da8a10faae2.woff2",
+    "static/media/roboto-latin-ext-400-normal.woff2": "/calendar-test-task/static/media/roboto-latin-ext-400-normal.861b791f9de857a6e7bc.woff2",
+    "static/media/roboto-cyrillic-400-normal.woff2": "/calendar-test-task/static/media/roboto-cyrillic-400-normal.71a33b6b50457b2c903a.woff2",
+    "static/media/roboto-greek-400-normal.woff2": "/calendar-test-task/static/media/roboto-greek-400-normal.c35e4c3958e209d17b31.woff2",
+    "static/media/roboto-vietnamese-400-normal.woff2": "/calendar-test-task/static/media/roboto-vietnamese-400-normal.3230f9b040f3c630e0c3.woff2",
+    "static/media/roboto-greek-ext-400-normal.woff2": "/calendar-test-task/static/media/roboto-greek-ext-400-normal.169619821ea93019d1bb.woff2",
+    "static/media/cross.svg": "/calendar-test-task/static/media/cross.8e4f09cb21deb81273b59e871d0cce8c.svg",
+    "static/media/search.svg": "/calendar-test-task/static/media/search.6ddf8bdfe2dbf7f9688482befe0af44f.svg",
+    "index.html": "/calendar-test-task/index.html",
+    "static/media/arrow-prev.svg": "/calendar-test-task/static/media/arrow-prev.a6e4f7a451b029e87b6ed3495d1443c7.svg",
+    "static/media/arrow-next.svg": "/calendar-test-task/static/media/arrow-next.ce2c2ef816669d046351ceceed3de309.svg",
+    "main.ccd74680.css.map": "/calendar-test-task/static/css/main.ccd74680.css.map",
+    "main.ee4808be.js.map": "/calendar-test-task/static/js/main.ee4808be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ccd74680.css",
+    "static/js/main.ee4808be.js"
+  ]
+}
